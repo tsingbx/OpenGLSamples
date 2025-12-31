@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(shader_class glfw.icns shader_s.h shader.cpp)
+
+add_custom_command(
+    TARGET shader_class POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/shader_class.app/Contents/Resources
+)
+

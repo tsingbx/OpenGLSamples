@@ -32,5 +32,8 @@ if (APPLE)
 endif()
 
     
-endfunction(AddExe projName)
+endfunction(AddExe projName ICON)
+
+
+
 
