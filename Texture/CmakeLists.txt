@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(texture glfw.icns texture.cpp)
+
+target_link_libraries(texture PUBLIC stbimage)
+
+target_include_directories(texture PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
+
+add_custom_command(
+    TARGET texture POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/texture.app/Contents/Resources
+)
+
+
+

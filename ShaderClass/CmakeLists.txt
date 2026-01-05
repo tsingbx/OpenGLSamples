@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
 
-AddExe(shader_class glfw.icns shader_s.h shader.cpp)
+AddExe(shader_class glfw.icns shader.cpp)
+
+target_include_directories(shader_class BEFORE PUBLIC "${CMAKE_SOURCE_DIR}/deps")
 
 add_custom_command(
     TARGET shader_class POST_BUILD
