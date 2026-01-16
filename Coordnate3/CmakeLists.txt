@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(coordnate3 glfw.icns coordnate.cpp)
+
+target_link_libraries(coordnate3 PUBLIC stbimage)
+
+target_include_directories(coordnate3 PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
+
+add_custom_command(
+    TARGET coordnate3 POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/coordnate3.app/Contents/Resources
+)
