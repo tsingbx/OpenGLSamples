@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
 
 AddExe(transform2 glfw.icns transform.cpp)
 
-target_link_libraries(transform2 PUBLIC stbimage)
+target_link_libraries(transform2 PRIVATE stbimage)
 
 target_include_directories(transform2 PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
 

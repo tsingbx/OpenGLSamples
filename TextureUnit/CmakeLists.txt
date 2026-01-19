@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
 
 AddExe(texture_unit glfw.icns texture.cpp)
 
-target_link_libraries(texture_unit PUBLIC stbimage)
+target_link_libraries(texture_unit PRIVATE stbimage)
 
 target_include_directories(texture_unit PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
 
