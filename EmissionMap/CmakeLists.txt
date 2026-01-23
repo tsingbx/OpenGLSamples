@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(emission_map glfw.icns emission_map.cpp)
+
+target_link_libraries(emission_map PRIVATE stbimage)
+
+target_include_directories(emission_map PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
+
+add_custom_command(
+    TARGET emission_map POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/emission_map.app/Contents/Resources
+)

@@ -38,4 +38,6 @@ add_subdirectory(LightGouraud)
 add_subdirectory(Material)
 add_subdirectory(DiffuseMap)
 add_subdirectory(SpecularMap)
-
+add_subdirectory(SpecularMap2)
+add_subdirectory(SpecularMap3)
+add_subdirectory(EmissionMap)
