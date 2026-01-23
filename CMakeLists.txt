@@ -37,3 +37,5 @@ add_subdirectory(LightSpecularHighlight2)
 add_subdirectory(LightGouraud)
 add_subdirectory(Material)
 add_subdirectory(DiffuseMap)
+add_subdirectory(SpecularMap)
+
