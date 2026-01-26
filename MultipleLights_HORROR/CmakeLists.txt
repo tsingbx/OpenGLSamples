@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(multiple_lights_horror glfw.icns light.cpp)
+
+target_link_libraries(multiple_lights_horror PRIVATE stbimage)
+
+target_include_directories(multiple_lights_horror PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
+
+add_custom_command(
+    TARGET multiple_lights_horror POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/multiple_lights_horror.app/Contents/Resources
+)
