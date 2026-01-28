@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(depth_testing glfw.icns depth_testing.cpp)
+
+target_link_libraries(depth_testing PRIVATE stbimage)
+
+target_include_directories(depth_testing PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
+
+add_custom_command(
+    TARGET depth_testing POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/depth_testing.app/Contents/Resources
+)
