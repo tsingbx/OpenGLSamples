@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(model_loading glfw.icns loading.cpp)
+
+target_link_libraries(model_loading PRIVATE stbimage assimp)
+
+target_link_directories(model_loading PRIVATE /opt/homebrew/lib/)
+
+target_include_directories(model_loading PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage /opt/homebrew/include/)
+
+add_custom_command(
+    TARGET model_loading POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/model_loading.app/Contents/Resources
+)
