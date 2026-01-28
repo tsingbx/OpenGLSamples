@@ -56,11 +56,11 @@ int main()
     }
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    glfwSetCursorPosCallback(window, mouse_callback);
+    //glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, scroll_callback);
 
     // tell GLFW to capture our mouse
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
@@ -129,13 +129,13 @@ int main()
     };
     float planeVertices[] = {
         // positions          // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
-         5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
-        -5.0f, -0.5f,  5.0f,  0.0f, 0.0f,
-        -5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
+         5.0f, -0.51f,  5.0f,  2.0f, 0.0f,
+        -5.0f, -0.51f,  5.0f,  0.0f, 0.0f,
+        -5.0f, -0.51f, -5.0f,  0.0f, 2.0f,
 
-         5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
-        -5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
-         5.0f, -0.5f, -5.0f,  2.0f, 2.0f								
+         5.0f, -0.51f,  5.0f,  2.0f, 0.0f,
+        -5.0f, -0.51f, -5.0f,  0.0f, 2.0f,
+         5.0f, -0.51f, -5.0f,  2.0f, 2.0f								
     };
     // cube VAO
     unsigned int cubeVAO, cubeVBO;
