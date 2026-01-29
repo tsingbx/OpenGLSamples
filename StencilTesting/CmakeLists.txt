@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(stencil_testing glfw.icns stencil_testing.cpp)
+
+target_link_libraries(stencil_testing PRIVATE stbimage)
+
+target_include_directories(stencil_testing PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
+
+add_custom_command(
+    TARGET stencil_testing POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/stencil_testing.app/Contents/Resources
+)
