@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(rearview_mrror glfw.icns framebuffers.cpp)
+
+target_link_libraries(rearview_mrror PRIVATE stbimage)
+
+target_include_directories(rearview_mrror PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
+
+add_custom_command(
+    TARGET rearview_mrror POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/rearview_mrror.app/Contents/Resources
+)
