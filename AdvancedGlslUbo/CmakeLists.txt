@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(advanced_glsl_ubo glfw.icns advanced_glsl_ubo.cpp)
+
+target_link_libraries(advanced_glsl_ubo PRIVATE stbimage)
+
+target_include_directories(advanced_glsl_ubo PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
+
+add_custom_command(
+    TARGET advanced_glsl_ubo POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/advanced_glsl_ubo.app/Contents/Resources
+)
+
+
+
