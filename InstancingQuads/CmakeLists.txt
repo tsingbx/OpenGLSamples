@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(instancing_quads glfw.icns instancing_quads.cpp)
+
+target_link_libraries(instancing_quads PRIVATE stbimage)
+
+target_link_directories(instancing_quads PRIVATE /opt/homebrew/lib/)
+
+target_include_directories(instancing_quads PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
+
+add_custom_command(
+    TARGET instancing_quads POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/instancing_quads.app/Contents/Resources
+)
