@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
+
+AddExe(anti_aliasing_offscreen glfw.icns anti_aliasing_offscreen.cpp)
+
+target_link_libraries(anti_aliasing_offscreen PRIVATE stbimage)
+
+target_include_directories(anti_aliasing_offscreen PRIVATE ${CMAKE_SOURCE_DIR}/deps ${CMAKE_SOURCE_DIR}/StbImage)
+
+add_custom_command(
+    TARGET anti_aliasing_offscreen POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/
+    ${CMAKE_CURRENT_BINARY_DIR}/anti_aliasing_offscreen.app/Contents/Resources
+)
+
