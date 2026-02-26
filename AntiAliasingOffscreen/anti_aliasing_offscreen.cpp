@@ -46,7 +46,7 @@ int main()
 #endif
 
     glfwWindowHint(GLFW_SAMPLES, 4);
-
+    
     // glfw window creation
     // --------------------
     GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
@@ -75,6 +75,7 @@ int main()
     // configure global opengl state
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_MULTISAMPLE);
 
     // build and compile shaders
     // -------------------------
@@ -89,47 +90,47 @@ int main()
     // ------------------------------------------------------------------
     float cubeVertices[] = {
         // positions       
-        -0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-        -0.5f,  0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
+        -0.25f, -0.25f, -0.25f,
+         0.25f, -0.25f, -0.25f,
+         0.25f,  0.25f, -0.25f,
+         0.25f,  0.25f, -0.25f,
+        -0.25f,  0.25f, -0.25f,
+        -0.25f, -0.25f, -0.25f,
 
-        -0.5f, -0.5f,  0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        -0.5f, -0.5f,  0.5f,
+        -0.25f, -0.25f,  0.25f,
+         0.25f, -0.25f,  0.25f,
+         0.25f,  0.25f,  0.25f,
+         0.25f,  0.25f,  0.25f,
+        -0.25f,  0.25f,  0.25f,
+        -0.25f, -0.25f,  0.25f,
 
-        -0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
+        -0.25f,  0.25f,  0.25f,
+        -0.25f,  0.25f, -0.25f,
+        -0.25f, -0.25f, -0.25f,
+        -0.25f, -0.25f, -0.25f,
+        -0.25f, -0.25f,  0.25f,
+        -0.25f,  0.25f,  0.25f,
 
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
+         0.25f,  0.25f,  0.25f,
+         0.25f,  0.25f, -0.25f,
+         0.25f, -0.25f, -0.25f,
+         0.25f, -0.25f, -0.25f,
+         0.25f, -0.25f,  0.25f,
+         0.25f,  0.25f,  0.25f,
 
-        -0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f, -0.5f,
+        -0.25f, -0.25f, -0.25f,
+         0.25f, -0.25f, -0.25f,
+         0.25f, -0.25f,  0.25f,
+         0.25f, -0.25f,  0.25f,
+        -0.25f, -0.25f,  0.25f,
+        -0.25f, -0.25f, -0.25f,
 
-        -0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f, -0.5f
+        -0.25f,  0.25f, -0.25f,
+         0.25f,  0.25f, -0.25f,
+         0.25f,  0.25f,  0.25f,
+         0.25f,  0.25f,  0.25f,
+        -0.25f,  0.25f,  0.25f,
+        -0.25f,  0.25f, -0.25f
     };
     float quadVertices[] = {   // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
         // positions   // texCoords
@@ -236,10 +237,12 @@ int main()
 
         // set transformation matrices		
         shader.use();
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 1000.0f);
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         shader.setMat4("projection", projection);
         shader.setMat4("view", camera.GetViewMatrix());
-        shader.setMat4("model", glm::mat4(1.0f));
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-0.8, -0.6, 0));
+        shader.setMat4("model", model);
 
         glBindVertexArray(cubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
